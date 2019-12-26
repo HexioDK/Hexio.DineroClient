@@ -28,10 +28,10 @@ namespace Hexio.DineroClient
         Task SendInvoice([Path] Guid guid, [Body] SendInvoiceEmailModel model);
 
         [Get("/v1/{organizationId}/products")]
-        Task<CollectionWrapper<ProductModel>> GetProducts([Query] string queryFilter, [Query] string fields = "Name,ProductGuid");
+        Task<CollectionWrapper<ProductModel>> GetProducts([Query(QuerySerializationMethod.Serialized)] string queryFilter, [Query] string fields = "Name,ProductGuid");
         
         [Get("/v1/{organizationId}/contacts")]
-        Task<CollectionWrapper<ContactModel>> GetContacts([Query] string queryFilter, [Query] string fields = "Name,ContactGuid,VatNumber");
+        Task<CollectionWrapper<ContactModel>> GetContacts([Query(QuerySerializationMethod.Serialized)] string queryFilter, [Query] string fields = "Name,ContactGuid,VatNumber");
         
         [Post("v1/{organizationId}/contacts")]
         Task<ContactModel> CreateContact([Body] ContactModel model);
