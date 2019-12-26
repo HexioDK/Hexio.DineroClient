@@ -16,7 +16,7 @@ jobs:
       - name: Generate build number
         uses: einaregilsson/build-number@v2 
         with:
-          token: ${{secrets.REGISTRY_PASSWORD}}    
+          token: ${{secrets.GITHUB_TOKEN}}    
         
       - name: Restore
         run: dotnet restore  
