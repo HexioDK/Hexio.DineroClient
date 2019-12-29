@@ -13,11 +13,8 @@ namespace Hexio.DineroClient.Models.Products
         public IList<string> FieldsToFilter { get; } = new List<string>
         {
             "Name",
-            "Email",
-            "ExternalReference",
-            "VatNumber",
-            "EanNumber",
-            "IsPerson",
+            "ProductNumber",
+            "ExternalReference"
         };
         
         public IList<string> GetDefaultFields()
