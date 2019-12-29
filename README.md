@@ -50,9 +50,8 @@ public async Task GetMyProduct(IDineroClient client, IDineroAuthClient authClien
     await client.SetAuthorizationHeader(authClient, settings.ApiKey, settings.OrganizationId);
 
     var query = new QueryCreator<ProductReadModel>()
-        .Where(x => x.Name, QueryOperator.Eq, "MyProduct");
-
-    query.Include(x => x.TotalAmount);
+        .Where(x => x.Name, QueryOperator.Eq, "MyProduct")
+        .Include(x => x.TotalAmount);
 
     var products = await client.GetProducts(query);
 }
