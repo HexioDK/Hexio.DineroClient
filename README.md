@@ -36,8 +36,15 @@ And then you need to setup your environment e.g. in your appsettings file
  }
 ```
 
+### Authentication
+
 To start using the Client you have to call the method `SetAuthorizationHeader(IDineroAuthClient authClient, string apiKey, int organizationId)`
 This makes a call to the Token service at Dinero which then issues a JWT which is then set on the client to use for all further requests.
+
+The AuthClient can be supplied by Dependency Injection
+``` cs
+await client.SetAuthorizationHeader(authClient, "SOMEAPIKEY", 123456");
+```
 
 ### Filtering on list endpoints
 When making calls to list endpoints in Dinero, they often supply the possibility for filtering and selecting which fields should be returned
