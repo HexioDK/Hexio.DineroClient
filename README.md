@@ -6,6 +6,10 @@ A simple and small package for interacting with the Dinero Public Api found at [
 
 ### How to Install
 
+Find the package on [Nuget.org](https://www.nuget.org/packages/Hexio.DineroClient/)
+
+OR
+
 `dotnet add package Hexio.DineroClient`
 
 And you are good to go :tada:
