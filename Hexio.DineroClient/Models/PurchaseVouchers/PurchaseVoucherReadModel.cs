@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace Hexio.DineroClient.Models
+namespace Hexio.DineroClient.Models.PurchaseVouchers
 {
-    public class PurchaseVoucherModel
+    public class PurchaseVoucherReadModel
     {
         public Guid Guid { get; set; }
         public string Timestamp { get; set; }
@@ -14,7 +14,7 @@ namespace Hexio.DineroClient.Models
         public DateTimeOffset? PaymentDate { get; set; }
         public string RegionKey { get; set; }
         public string PurchaseType { get; set; }
-        public List<PurchaseVoucherModelLine> Lines { get; set; }
+        public List<PurchaseVoucherLineReadModel> Lines { get; set; }
         public int? DepositAccountNumber { get; set; }
         public object ContactGuid { get; set; }
         public string ExternalReference { get; set; }
@@ -27,15 +27,4 @@ namespace Hexio.DineroClient.Models
             };
         }
     }
-
-    public class PurchaseVoucherModelLine
-    {
-        public string Description { get; set; }
-        public string VatCode { get; set; }
-        public long AccountNumber { get; set; }
-        public decimal AmountExclVatValue { get; set; }
-        public decimal AmountInclVatValue { get; set; }
-        public decimal VatAmountValue { get; set; }
-    }
-
 }

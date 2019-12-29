@@ -1,6 +1,6 @@
-namespace Hexio.DineroClient.Models
+namespace Hexio.DineroClient.Models.Accounts
 {
-    public class CreateEntryAccountModel
+    public class CreateAccountModel
     {
         public int Number { get; set; }
         public string Name { get; set; }

@@ -1,6 +1,6 @@
 using RestEase;
 
-namespace Hexio.DineroClient
+namespace Hexio.DineroClient.Module
 {
     public static class DineroClientFactory
     {

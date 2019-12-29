@@ -1,8 +1,17 @@
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading;
 using System.Threading.Tasks;
+using Hexio.DineroClient.Auth;
 using Hexio.DineroClient.Models;
+using Hexio.DineroClient.Models.Accounts;
+using Hexio.DineroClient.Models.Contacts;
+using Hexio.DineroClient.Models.Invoices;
+using Hexio.DineroClient.Models.ManualVoucher;
+using Hexio.DineroClient.Models.Products;
+using Hexio.DineroClient.Models.PurchaseVouchers;
 using RestEase;
 
 namespace Hexio.DineroClient
@@ -15,9 +24,42 @@ namespace Hexio.DineroClient
         [Header("Authorization")]
         AuthenticationHeaderValue Authorization { get; set; }
         
+        [Get("v1/{organizationId}/accounts/entry")]
+        Task<IList<AccountModel>> GetAccounts();
+
+        [Post("v1/{organizationId}/accounts/entry")]
+        Task CreateEntryAccount([Body] CreateAccountModel model);
+
+        [Get("/v1/{organizationId}/products")]
+        Task<CollectionWrapper<ProductReadModel>> GetProducts([RawQueryString] QueryCreator<ProductReadModel> queryCreator);
+        
+        [Get("/v1/{organizationId}/contacts")]
+        Task<CollectionWrapper<ContactReadModel>> GetContacts([RawQueryString] QueryCreator<ContactReadModel> queryCreator);
+        
+        [Post("v1/{organizationId}/contacts")]
+        Task<CreateContactModel> CreateContact([Body] CreateContactModel model);
+        
+        [Post("v1/{organizationId}/vouchers/manuel")]
+        Task<ManualVoucherCreatedModel> CreateManualVoucher([Body] CreateManualVoucherModel model);
+        
+        [Post("v1/{organizationId}/vouchers/manuel/{voucherGuid}/book")]
+        Task BookManualVoucher([Path] Guid voucherGuid, [Body] BookVoucherModel model);
+
+        [Get("v1/{organizationId}/vouchers/purchase/{guid}")]
+        Task<PurchaseVoucherReadModel> GetPurchaseVoucher([Path] Guid guid);
+
+        [Post("v1.1/{organizationId}/vouchers/purchase")]
+        Task<PurchaseVoucherReadModel> CreatePurchaseVoucher([Body] CreatePurchaseVoucherModel model);
+
+        [Post("v1/{organizationId}/vouchers/purchase/{guid}/book")]
+        Task<PurchaseVoucherReadModel> BookPurchaseVoucher([Body] BookVoucherModel model, [Path] Guid guid);
+        
+        [Delete("v1/{organizationId}/vouchers/purchase/{guid}")]
+        Task DeletePurchaseVoucher([Path] Guid guid, [Body] DeletePurchaseVoucherModel model);
+
         [Post("/v1/{organizationId}/invoices")]
         [AllowAnyStatusCode]
-        Task<Response<CreatedResponse>> CreateInvoice([Body] CreateInvoiceModel model);
+        Task<Response<InvoiceCreatedModel>> CreateInvoice([Body] CreateInvoiceModel model);
 
         [Post("/v1/{organizationId}/invoices/{guid}/book")]
         [AllowAnyStatusCode]
@@ -26,39 +68,6 @@ namespace Hexio.DineroClient
         [Post("/v1/{organizationId}/invoices/{guid}/email")]
         [AllowAnyStatusCode]
         Task SendInvoice([Path] Guid guid, [Body] SendInvoiceEmailModel model);
-
-        [Get("/v1/{organizationId}/products")]
-        Task<CollectionWrapper<ProductModel>> GetProducts([Query(QuerySerializationMethod.Serialized)] string queryFilter, [Query] string fields = "Name,ProductGuid");
-        
-        [Get("/v1/{organizationId}/contacts")]
-        Task<CollectionWrapper<ContactModel>> GetContacts([Query(QuerySerializationMethod.Serialized)] string queryFilter, [Query] string fields = "Name,ContactGuid,VatNumber");
-        
-        [Post("v1/{organizationId}/contacts")]
-        Task<ContactModel> CreateContact([Body] ContactModel model);
-
-        [Get("v1/{organizationId}/vouchers/purchase/{guid}")]
-        Task<PurchaseVoucherModel> GetPurchaseVoucher([Path] Guid guid);
-
-        [Post("v1.1/{organizationId}/vouchers/purchase")]
-        Task<PurchaseVoucherModel> CreatePurchaseVoucher([Body] CreatePurchaseVoucherModel model);
-
-        [Post("v1/{organizationId}/vouchers/purchase/{guid}/book")]
-        Task<PurchaseVoucherModel> BookPurchaseVoucher([Body] BookVoucherModel model, [Path] Guid guid);
-        
-        [Delete("v1/{organizationId}/vouchers/purchase/{guid}")]
-        Task DeletePurchaseVoucher([Path] Guid guid, [Body] TimestampModel model);
-        
-        [Post("v1/{organizationId}/vouchers/manuel")]
-        Task<ManualVoucherResponseModel> CreateManualVoucher([Body] ManualVoucherCreateModel model);
-        
-        [Post("v1/{organizationId}/vouchers/manuel/{voucherGuid}/book")]
-        Task BookManualVoucher([Path] Guid voucherGuid, [Body] BookVoucherModel model);
-
-        [Get("v1/{organizationId}/accounts/entry")]
-        Task<IList<AccountModel>> GetAccounts();
-
-        [Post("v1/{organizationId}/accounts/entry")]
-        Task CreateEntryAccount([Body] CreateEntryAccountModel model);
     }
 
     public static class DineroClientExtensions

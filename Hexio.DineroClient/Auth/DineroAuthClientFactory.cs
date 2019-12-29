@@ -1,7 +1,8 @@
 using System.Net.Http.Headers;
+using Hexio.DineroClient.Module;
 using RestEase;
 
-namespace Hexio.DineroClient
+namespace Hexio.DineroClient.Auth
 {
     public static class DineroAuthClientFactory
     {

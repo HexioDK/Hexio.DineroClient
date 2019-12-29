@@ -1,4 +1,4 @@
-namespace Hexio.DineroClient
+namespace Hexio.DineroClient.Module
 {
     public class DineroApiSettings
     {

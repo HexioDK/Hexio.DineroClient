@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Hexio.DineroClient.Models
+namespace Hexio.DineroClient.Auth
 {
     public class AuthResponse
     {

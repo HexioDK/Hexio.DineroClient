@@ -1,4 +1,4 @@
-namespace Hexio.DineroClient.Models
+namespace Hexio.DineroClient.Models.Invoices
 {
     public class BookInvoiceModel
     {

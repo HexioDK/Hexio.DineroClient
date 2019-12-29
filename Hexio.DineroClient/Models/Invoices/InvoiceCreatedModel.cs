@@ -1,8 +1,8 @@
 using System;
 
-namespace Hexio.DineroClient.Models
+namespace Hexio.DineroClient.Models.Invoices
 {
-    public class CreatedResponse
+    public class InvoiceCreatedModel
     {
         public Guid Guid { get; set; }
         public string TimeStamp { get; set; }

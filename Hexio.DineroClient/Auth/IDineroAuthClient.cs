@@ -1,9 +1,8 @@
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Hexio.DineroClient.Models;
 using RestEase;
 
-namespace Hexio.DineroClient
+namespace Hexio.DineroClient.Auth
 {
     public interface IDineroAuthClient
     {

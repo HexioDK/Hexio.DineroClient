@@ -1,4 +1,4 @@
-namespace Hexio.DineroClient.Models
+namespace Hexio.DineroClient.Models.Accounts
 {
     public class AccountModel
     {

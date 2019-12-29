@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hexio.DineroClient", "Hexio.DineroClient\Hexio.DineroClient.csproj", "{E33743F8-8C0A-451C-AAD8-239D1A36CAE2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hexio.DineroClient.Demo", "Hexio.DineroClient.Demo\Hexio.DineroClient.Demo.csproj", "{57C93065-9FE2-428D-BB67-DA521B48A4BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,17 @@ Global
 		{E33743F8-8C0A-451C-AAD8-239D1A36CAE2}.Release|x64.Build.0 = Release|Any CPU
 		{E33743F8-8C0A-451C-AAD8-239D1A36CAE2}.Release|x86.ActiveCfg = Release|Any CPU
 		{E33743F8-8C0A-451C-AAD8-239D1A36CAE2}.Release|x86.Build.0 = Release|Any CPU
+		{57C93065-9FE2-428D-BB67-DA521B48A4BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57C93065-9FE2-428D-BB67-DA521B48A4BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57C93065-9FE2-428D-BB67-DA521B48A4BC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{57C93065-9FE2-428D-BB67-DA521B48A4BC}.Debug|x64.Build.0 = Debug|Any CPU
+		{57C93065-9FE2-428D-BB67-DA521B48A4BC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{57C93065-9FE2-428D-BB67-DA521B48A4BC}.Debug|x86.Build.0 = Debug|Any CPU
+		{57C93065-9FE2-428D-BB67-DA521B48A4BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57C93065-9FE2-428D-BB67-DA521B48A4BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57C93065-9FE2-428D-BB67-DA521B48A4BC}.Release|x64.ActiveCfg = Release|Any CPU
+		{57C93065-9FE2-428D-BB67-DA521B48A4BC}.Release|x64.Build.0 = Release|Any CPU
+		{57C93065-9FE2-428D-BB67-DA521B48A4BC}.Release|x86.ActiveCfg = Release|Any CPU
+		{57C93065-9FE2-428D-BB67-DA521B48A4BC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
