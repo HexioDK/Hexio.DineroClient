@@ -2,6 +2,14 @@
 
 A simple and small package for interacting with the Dinero Public Api found at [Dinero Public api](https://api.dinero.dk)
 
+**This package is not complete, it is ready for use by some endpoints have still not been implemented**
+
+### How to Install
+
+`dotnet add package Hexio.DineroClient`
+
+And you are good to go :tada:
+
 ### How To Use
 
 This package uses autofac for easy integration into your dependency injection chain. 
