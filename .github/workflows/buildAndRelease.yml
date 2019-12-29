@@ -2,36 +2,21 @@ name: Build
 
 on:
   push:
-    branches:
-      - master
   
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-16.04
     steps:
+      
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1.100' 
 
       - name: Checkout repository
-        uses: actions/checkout@master
-      
-      - name: Generate build number
-        uses: einaregilsson/build-number@v2 
-        with:
-          token: ${{secrets.GITHUB_TOKEN}}    
+        uses: actions/checkout@master  
         
       - name: Restore
         run: dotnet restore  
         
       - name: Build
         run: dotnet build -c Release --no-restore
-        
-      - name: Publish 
-        run: dotnet pack Hexio.DineroClient -c Release --no-build -o D:\tmp\output\ -p:PackageVersion=1.0.${env:BUILD_NUMBER}
-        
-      - name: Setup Nuget.exe
-        uses: warrenbuckley/Setup-Nuget@v1
-
-      - name: Add private GitHub registry to NuGet
-        run: nuget sources add -name "GPR" -Source https://nuget.pkg.github.com/mortenrickirasmussen/index.json -Username mortenrickirasmussen -Password ${{ secrets.GITHUB_TOKEN }}
-          
-      - name: Push to registry
-        run: nuget push D:\tmp\output\*.nupkg -Source "GPR"
