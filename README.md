@@ -30,8 +30,8 @@ And then you need to setup your environment e.g. in your appsettings file
      "ApiUrl": "https://api.dinero.dk",
      "ClientId": "SOMEClIENTID",
      "ClientSecret": "SOMECLIENTSECRET",
-     "ApiKey": "SOMEAPIKEY",
-     "OrganizationId": 123456 
+     "ApiKey": "SOMEAPIKEY", //ONLY NEEDED IF USING SingleDineroAccountApiSettings
+     "OrganizationId": 123456 //ONLY NEEDED IF USING SingleDineroAccountApiSettings
    }
  }
 ```
