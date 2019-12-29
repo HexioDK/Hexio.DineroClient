@@ -27,4 +27,4 @@ jobs:
         run: dotnet pack Hexio.DineroClient -c Release --no-build -o /tmp/nuget -p:PackageVersion=${GITHUB_REF:10}
         
       - name: Push to registry
-        run: dotnet nuget push /tmp/nuget/*.nupkg -k ${{ secrets.NugetApiKey }}
+        run: dotnet nuget push /tmp/nuget/*.nupkg -k ${{ secrets.NugetApiKey }} -s https://nuget.org
