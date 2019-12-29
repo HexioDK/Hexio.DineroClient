@@ -8,18 +8,18 @@ This package uses autofac for easy integration into your dependency injection ch
 
 In you Startup.cs in method depending on if your are going to use the client with only 1 or multiple organizations
 ``` cs
-        public void ConfigureContainer(ContainerBuilder builder)
-        {
-            // To use with one organization
-            var settings = _configuration.GetSection("DineroApiSettings").Get<SingleDineroAccountApiSettings>();
+public void ConfigureContainer(ContainerBuilder builder)
+{
+    // To use with one organization
+    var settings = _configuration.GetSection("DineroApiSettings").Get<SingleDineroAccountApiSettings>();
 
-            // To use with multiple organizations
-            var settings = _configuration.GetSection("DineroApiSettings").Get<DineroApiSettings>();
-            
-            var module = new DineroModule(settings);
-            
-            builder.RegisterModule(module);
-        }
+    // To use with multiple organizations
+    var settings = _configuration.GetSection("DineroApiSettings").Get<DineroApiSettings>();
+    
+    var module = new DineroModule(settings);
+    
+    builder.RegisterModule(module);
+}
 ```
 
 And then you need to setup your environment e.g. in your appsettings file
@@ -45,15 +45,15 @@ When making calls to list endpoints in Dinero, they often supply the possibility
 To interact with these endpoints you can use the QueryCreator class
 
 ``` cs
-        public async Task GetMyProduct(IDineroClient client, IDineroAuthClient authClient, SingleDineroAccountApiSettings settings)
-        {
-            await client.SetAuthorizationHeader(authClient, settings.ApiKey, settings.OrganizationId);
+public async Task GetMyProduct(IDineroClient client, IDineroAuthClient authClient, SingleDineroAccountApiSettings settings)
+{
+    await client.SetAuthorizationHeader(authClient, settings.ApiKey, settings.OrganizationId);
 
-            var query = new QueryCreator<ProductReadModel>()
-                .Where(x => x.Name, QueryOperator.Eq, "MyProduct");
+    var query = new QueryCreator<ProductReadModel>()
+        .Where(x => x.Name, QueryOperator.Eq, "MyProduct");
 
-            query.Include(x => x.TotalAmount);
+    query.Include(x => x.TotalAmount);
 
-            var products = await client.GetProducts(query);
-        }
+    var products = await client.GetProducts(query);
+}
 ```
