@@ -1,6 +1,6 @@
 ## Dinero Client
 
-A simple and small package for interacting with the Dinero Public Api found at (Dinero Public api)[https://api.dinero.dk]
+A simple and small package for interacting with the Dinero Public Api found at [Dinero Public api](https://api.dinero.dk)
 
 ### How To Use
 
