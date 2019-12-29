@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-16.04
     steps:
       - name: test
-        run: ${GITHUB_REF:10}
+        run: echo ${GITHUB_REF:10}
 
       - name: Checkout repository
         uses: actions/checkout@master   
