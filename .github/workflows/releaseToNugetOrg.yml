@@ -1,0 +1,30 @@
+name: Release to Nuget.org
+
+on:
+  release:
+    types: 
+      - created
+          
+jobs:
+  build:
+    runs-on: ubuntu-16.04
+    steps:
+      
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1.100' 
+
+      - name: Checkout repository
+        uses: actions/checkout@master   
+        
+      - name: Restore
+        run: dotnet restore  
+        
+      - name: Build
+        run: dotnet build -c Release --no-restore
+        
+      - name: Publish 
+        run: dotnet pack Hexio.DineroClient -c Release --no-build -o /tmp/nuget -p:PackageVersion=${GITHUB_REF:10}
+        
+      - name: Push to registry
+        run: dotnet nuget push /tmp/nuget/*.nupkg -k ${{ secrets.NugetApiKey }} -s https://nuget.org
