@@ -1,6 +1,6 @@
 namespace Hexio.DineroClient.Models.ManualVoucher
 {
-    public class ManualVoucherLineCreatedModel
+    public class ManualVoucherLineReadModel
     {
         public string Description { get; set; }
         public decimal AmountExclVatValue { get; set; }

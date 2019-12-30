@@ -37,13 +37,16 @@ namespace Hexio.DineroClient
         Task<CollectionWrapper<ContactReadModel>> GetContacts([RawQueryString] QueryCreator<ContactReadModel> queryCreator);
         
         [Post("v1/{organizationId}/contacts")]
-        Task<CreateContactModel> CreateContact([Body] CreateContactModel model);
+        Task<ContactReadModel> CreateContact([Body] CreateContactModel model);
         
         [Post("v1/{organizationId}/vouchers/manuel")]
-        Task<ManualVoucherCreatedModel> CreateManualVoucher([Body] CreateManualVoucherModel model);
+        Task<ManualVoucherReadModel> CreateManualVoucher([Body] CreateManualVoucherModel model);
         
         [Post("v1/{organizationId}/vouchers/manuel/{voucherGuid}/book")]
         Task BookManualVoucher([Path] Guid voucherGuid, [Body] BookVoucherModel model);
+        
+        [Get("v1/{organizationId}/vouchers/manuel/{guid}")]
+        Task<ManualVoucherReadModel> GetManualVoucher([Path] Guid guid);
 
         [Get("v1/{organizationId}/vouchers/purchase/{guid}")]
         Task<PurchaseVoucherReadModel> GetPurchaseVoucher([Path] Guid guid);
