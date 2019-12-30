@@ -1,10 +1,10 @@
-name: Build
+name: On Push (Build and Test)
 
 on:
   push:
     branches:
-      "*"
-      "!master"
+      - '*'
+      - '!master'
       
 jobs:
   build:
