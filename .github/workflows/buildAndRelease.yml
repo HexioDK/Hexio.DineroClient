@@ -2,7 +2,10 @@ name: Build
 
 on:
   push:
-  
+    branches:
+      "*"
+      "!master"
+      
 jobs:
   build:
     runs-on: ubuntu-16.04
