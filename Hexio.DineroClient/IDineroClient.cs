@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
@@ -71,6 +72,11 @@ namespace Hexio.DineroClient
         [Post("/v1/{organizationId}/invoices/{guid}/email")]
         [AllowAnyStatusCode]
         Task SendInvoice([Path] Guid guid, [Body] SendInvoiceEmailModel model);
+
+        [Post("/v1/{organizationId}/files")]
+        [AllowAnyStatusCode]
+        Task<FileUploadedResponse> UploadFile([Body] HttpContent content);
+
     }
 
     public static class DineroClientExtensions
@@ -90,6 +96,29 @@ namespace Hexio.DineroClient
             {
                 TimeStamp = timestamp
             });
+        }
+
+        public static async Task<FileUploadedResponse> UploadFile(this IDineroClient client, Stream steam, string fileName = "file.pdf", string contentType = "application/pdf")
+        {
+            if (!contentType.Contains("pdf") && !contentType.Contains("image"))
+            {
+                throw new Exception("Not a valid content type, e.g. application/pdf");
+            }
+
+            var content = new MultipartFormDataContent();
+
+            var fileContent = new StreamContent(steam);
+            
+            fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
+            {
+                FileName = fileName
+            };
+            
+            fileContent.Headers.ContentType = new MediaTypeHeaderValue(contentType);
+            
+            content.Add(fileContent);
+
+            return await client.UploadFile(content);
         }
     }
 }
