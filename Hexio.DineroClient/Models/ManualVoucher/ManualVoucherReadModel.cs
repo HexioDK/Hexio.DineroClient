@@ -5,10 +5,10 @@ namespace Hexio.DineroClient.Models.ManualVoucher
 {
     public class ManualVoucherReadModel
     {
-        public object VoucherNumber { get; set; }
+        public int? VoucherNumber { get; set; }
         public DateTimeOffset VoucherDate { get; set; }
-        public long TotalInclVat { get; set; }
-        public long TotalExclVat { get; set; }
+        public decimal TotalInclVat { get; set; }
+        public decimal TotalExclVat { get; set; }
         public string FileGuid { get; set; }
         public Guid Guid { get; set; }
         public string Status { get; set; }

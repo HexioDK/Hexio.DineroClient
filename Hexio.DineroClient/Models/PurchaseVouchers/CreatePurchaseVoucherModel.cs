@@ -10,7 +10,7 @@ namespace Hexio.DineroClient.Models.PurchaseVouchers
         public long DepositAccountNumber { get; set; }
         public string RegionKey { get; set; }
         public string FileGuid { get; set; }
-        public Guid ContactGuid { get; set; }
+        public Guid? ContactGuid { get; set; }
         public string PaymentDate { get; set; } // Format YYYY-MM-DD
         public string PurchaseType { get; set; }
         public string ExternalReference { get; set; }

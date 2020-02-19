@@ -7,8 +7,8 @@ namespace Hexio.DineroClient.Models.Products
     {
         public Guid ProductGuid { get; set; }
         public long? BaseAmountValueInclVat { get; set; }
-        public long? TotalAmount { get; set; }
-        public long? TotalAmountInclVat { get; set; }
+        public decimal? TotalAmount { get; set; }
+        public decimal? TotalAmountInclVat { get; set; }
         
         public IList<string> FieldsToFilter { get; } = new List<string>
         {
