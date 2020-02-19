@@ -4,7 +4,7 @@ namespace Hexio.DineroClient.Models.Invoices
 {
     public class CreateInvoiceLineModel
     {
-        public Guid ProductGuid { get; set; }
+        public Guid? ProductGuid { get; set; }
         public string Description { get; set; }
         public string Comments { get; set; }
         public decimal BaseAmountValue { get; set; }
