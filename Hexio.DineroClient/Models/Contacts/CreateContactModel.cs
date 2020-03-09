@@ -5,14 +5,14 @@ namespace Hexio.DineroClient.Models.Contacts
         public string ExternalReference { get; set; }
         public string Name { get; set; }
         public string Street { get; set; }
-        public int ZipCode { get; set; }
+        public int? ZipCode { get; set; }
         public string City { get; set; }
         public string CountryKey { get; set; } = "DK";
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Webpage { get; set; }
         public string AttPerson { get; set; }
-        public long VatNumber { get; set; }
+        public long? VatNumber { get; set; }
         public string EanNumber { get; set; }
         public string PaymentConditionType { get; set; }
         public long PaymentConditionNumberOfDays { get; set; }
