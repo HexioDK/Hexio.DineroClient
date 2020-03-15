@@ -61,6 +61,12 @@ namespace Hexio.DineroClient
         [Delete("v1/{organizationId}/vouchers/purchase/{guid}")]
         Task DeletePurchaseVoucher([Path] Guid guid, [Body] DeletePurchaseVoucherModel model);
 
+        [Get("v1/{organizationId}/invoices")]
+        Task<CollectionWrapper<InvoiceCollectionReadModel>> ListInvoices([RawQueryString] QueryCreator<InvoiceCollectionReadModel> queryCreator = null);
+        
+        [Get("v1/{organizationId}/invoices/{guid}")]
+        Task<InvoiceReadModel> GetInvoice([Path] Guid guid);
+
         [Post("/v1/{organizationId}/invoices")]
         [AllowAnyStatusCode]
         Task<Response<InvoiceCreatedModel>> CreateInvoice([Body] CreateInvoiceModel model);
