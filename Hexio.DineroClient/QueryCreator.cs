@@ -16,8 +16,12 @@ namespace Hexio.DineroClient
     
     public class QueryCreator<T> where T : IReadModel, new()
     {
-        public IList<QueryFilterValue> Filters { get; set; } = new List<QueryFilterValue>();
-        public IList<string> Fields { get; set; } = new List<string>();
+        private IList<QueryFilterValue> Filters { get; set; } = new List<QueryFilterValue>();
+        private IList<string> Fields { get; set; } = new List<string>();
+
+        private int PageSize { get; set; } = 100;
+
+        private int Page { get; set; } = 0;
 
         private DateTimeOffset? ChangesSince { get; set; }
 
@@ -67,6 +71,25 @@ namespace Hexio.DineroClient
              
             return this;
         }
+        
+        public QueryCreator<T> Size(int pageSize)
+        {
+            if (pageSize > 1000 || pageSize < 0)
+            {
+                throw new Exception("Page size must be between 0 and 1000");
+            }
+            
+            PageSize = pageSize;
+
+            return this;
+        }
+
+        public QueryCreator<T> PageNumber(int page)
+        {
+            Page = page;
+
+            return this;
+        }
 
         public QueryCreator<T> ChangeSince(DateTimeOffset changesSince)
         {
@@ -104,6 +127,9 @@ namespace Hexio.DineroClient
             {
                 queryItems.Add($"changesSince={ChangesSince.Value.ToString("yyyy-MM-ddTHH:mm:ssZ")}");
             }
+
+            queryItems.Add($"page={Page}");
+            queryItems.Add($"pageSize={PageSize}");
 
             return string.Join("&", queryItems);
         }
