@@ -25,5 +25,10 @@ namespace Hexio.DineroClient.Models.Products
                 "ProductGuid"
             };
         }
+
+        public bool HasChangesSince()
+        {
+            return true;
+        }
     }
 }

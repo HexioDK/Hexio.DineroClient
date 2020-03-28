@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hexio.DineroClient", "Hexio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hexio.DineroClient.Demo", "Hexio.DineroClient.Demo\Hexio.DineroClient.Demo.csproj", "{57C93065-9FE2-428D-BB67-DA521B48A4BC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hexio.DineroClient.Tests", "Hexio.DineroClient.Tests\Hexio.DineroClient.Tests.csproj", "{9F910C7C-9EB4-4806-9A99-042F529F9D30}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{57C93065-9FE2-428D-BB67-DA521B48A4BC}.Release|x64.Build.0 = Release|Any CPU
 		{57C93065-9FE2-428D-BB67-DA521B48A4BC}.Release|x86.ActiveCfg = Release|Any CPU
 		{57C93065-9FE2-428D-BB67-DA521B48A4BC}.Release|x86.Build.0 = Release|Any CPU
+		{9F910C7C-9EB4-4806-9A99-042F529F9D30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F910C7C-9EB4-4806-9A99-042F529F9D30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F910C7C-9EB4-4806-9A99-042F529F9D30}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9F910C7C-9EB4-4806-9A99-042F529F9D30}.Debug|x64.Build.0 = Debug|Any CPU
+		{9F910C7C-9EB4-4806-9A99-042F529F9D30}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9F910C7C-9EB4-4806-9A99-042F529F9D30}.Debug|x86.Build.0 = Debug|Any CPU
+		{9F910C7C-9EB4-4806-9A99-042F529F9D30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F910C7C-9EB4-4806-9A99-042F529F9D30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F910C7C-9EB4-4806-9A99-042F529F9D30}.Release|x64.ActiveCfg = Release|Any CPU
+		{9F910C7C-9EB4-4806-9A99-042F529F9D30}.Release|x64.Build.0 = Release|Any CPU
+		{9F910C7C-9EB4-4806-9A99-042F529F9D30}.Release|x86.ActiveCfg = Release|Any CPU
+		{9F910C7C-9EB4-4806-9A99-042F529F9D30}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

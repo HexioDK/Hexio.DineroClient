@@ -27,5 +27,10 @@ namespace Hexio.DineroClient.Models.Contacts
                 "ContactGuid"
             };
         }
+
+        public bool HasChangesSince()
+        {
+            return true;
+        }
     }
 }

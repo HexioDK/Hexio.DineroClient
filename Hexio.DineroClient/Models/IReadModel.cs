@@ -6,5 +6,6 @@ namespace Hexio.DineroClient.Models
     {
         IList<string> FieldsToFilter { get; }
         IList<string> GetDefaultFields();
+        bool HasChangesSince();
     }
 }

@@ -19,6 +19,8 @@ namespace Hexio.DineroClient
         public IList<QueryFilterValue> Filters { get; set; } = new List<QueryFilterValue>();
         public IList<string> Fields { get; set; } = new List<string>();
 
+        private DateTimeOffset? ChangesSince { get; set; }
+
         public QueryCreator<T> Where(Expression<Func<T, object>> expression, QueryOperator queryOperator, string value)
         {
             var type = new T();
@@ -59,11 +61,25 @@ namespace Hexio.DineroClient
                 body = ubody.Operand as MemberExpression;
             }
 
-             var parameterName = body.Member.Name;
+            var parameterName = body.Member.Name;
              
-             Fields.Add(parameterName);
+            Fields.Add(parameterName);
              
-             return this;
+            return this;
+        }
+
+        public QueryCreator<T> ChangeSince(DateTimeOffset changesSince)
+        {
+            if ((new T().HasChangesSince()))
+            {
+                ChangesSince = changesSince;
+            }
+            else
+            {
+                throw new Exception($"Class {typeof(T)} does not allow ChangesSince");
+            }
+
+            return this;
         }
 
         public override string ToString()
@@ -71,23 +87,25 @@ namespace Hexio.DineroClient
             var filter = string.Join(";", Filters.Select(x => x.ToString()));
 
             var fields = string.Join(",", Fields);
-            
-            if (Fields.Count == 0 && Filters.Count == 0)
+
+            var queryItems = new List<string>();
+
+            if (Fields.Count > 0)
             {
-                return "";
+                queryItems.Add($"fields={fields}");
             }
 
-            if (Fields.Count == 0)
+            if (Filters.Count > 0)
             {
-                return $"queryFilter={filter}";
+                queryItems.Add($"queryFilter={filter}");
             }
 
-            if (Filters.Count == 0)
+            if (ChangesSince != null)
             {
-                return $"fields={filter}";
+                queryItems.Add($"changesSince={ChangesSince.Value.ToString("yyyy-MM-ddTHH:mm:ssZ")}");
             }
-            
-            return $"queryFilter={filter}&fields={fields}";
+
+            return string.Join("&", queryItems);
         }
     }
 

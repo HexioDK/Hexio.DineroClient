@@ -40,6 +40,11 @@ namespace Hexio.DineroClient.Models.Invoices
                 "Description"
             };
         }
+
+        public bool HasChangesSince()
+        {
+            return true;
+        }
     }
 
 }
