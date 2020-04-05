@@ -40,6 +40,9 @@ namespace Hexio.DineroClient
         [Post("v1/{organizationId}/contacts")]
         Task<ContactReadModel> CreateContact([Body] CreateContactModel model);
         
+        [Put("v1/{organizationId}/contacts/{contactGuid}")]
+        Task<ContactReadModel> UpdateContact([Path] Guid contactGuid, [Body] CreateContactModel model);
+        
         [Post("v1/{organizationId}/vouchers/manuel")]
         Task<ManualVoucherReadModel> CreateManualVoucher([Body] CreateManualVoucherModel model);
         
