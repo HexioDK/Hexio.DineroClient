@@ -86,6 +86,10 @@ namespace Hexio.DineroClient
         [AllowAnyStatusCode]
         Task SendInvoice([Path] Guid guid, [Body] SendInvoiceEmailModel model);
 
+        [Post("v1/{organizationId}/invoices/{invoiceGuid}/payments")]
+        [AllowAnyStatusCode]
+        Task<InvoiceCreatedModel> AddPaymentToInvoice([Path] Guid invoiceGuid, [Body] CreatePaymentModel model);
+
         [Post("/v1/{organizationId}/files")]
         [AllowAnyStatusCode]
         Task<FileUploadedResponse> UploadFile([Body] HttpContent content);
