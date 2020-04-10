@@ -126,6 +126,11 @@ namespace Hexio.DineroClient
                 throw new Exception("Not a valid content type, e.g. application/pdf");
             }
 
+            if (steam.CanSeek)
+            {
+                steam.Seek(0, SeekOrigin.Begin);
+            }
+
             var content = new MultipartFormDataContent();
 
             var fileContent = new StreamContent(steam);
