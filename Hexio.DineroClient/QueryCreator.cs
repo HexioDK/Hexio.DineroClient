@@ -22,8 +22,12 @@ namespace Hexio.DineroClient
         private int PageSize { get; set; } = 100;
 
         private int Page { get; set; } = 0;
-
         private DateTimeOffset? ChangesSince { get; set; }
+
+        public QueryCreator()
+        {
+            Fields = new T().GetDefaultFields();
+        }
 
         public QueryCreator<T> Where(Expression<Func<T, object>> expression, QueryOperator queryOperator, string value)
         {
@@ -66,8 +70,11 @@ namespace Hexio.DineroClient
             }
 
             var parameterName = body.Member.Name;
-             
-            Fields.Add(parameterName);
+
+            if (!Fields.Contains(parameterName))
+            {
+                Fields.Add(parameterName);
+            }
              
             return this;
         }
