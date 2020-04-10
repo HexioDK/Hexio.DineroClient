@@ -6,7 +6,7 @@ namespace Hexio.DineroClient.Models.Invoices
     public class InvoiceCollectionReadModel : IReadModel
     {
         public long? Number { get; set; }
-        public string Guid { get; set; }
+        public Guid Guid { get; set; }
         public string ExternalReference { get; set; }
         public string Date { get; set; }
         public string PaymentDate { get; set; }

@@ -69,6 +69,10 @@ namespace Hexio.DineroClient
         
         [Get("v1/{organizationId}/invoices/{guid}")]
         Task<InvoiceReadModel> GetInvoice([Path] Guid guid);
+        
+        [Get("v1/{organizationId}/invoices/{guid}")]
+        [Header("Accept", "application/octet-stream")]
+        Task<Stream> GetInvoicePdf([Path] Guid guid);
 
         [Post("/v1/{organizationId}/invoices")]
         [AllowAnyStatusCode]
