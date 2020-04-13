@@ -15,10 +15,10 @@ namespace Hexio.DineroClient.Models.Invoices
         public string Type { get; set; }
         public string ContactName { get; set; }
         public Guid? ContactGuid { get; set; }
-        public long? TotalInclVat { get; set; }
-        public long? TotalExclVat { get; set; }
-        public long? TotalInclVatInDkk { get; set; }
-        public long? TotalExclVatInDkk { get; set; }
+        public decimal? TotalInclVat { get; set; }
+        public decimal? TotalExclVat { get; set; }
+        public decimal? TotalInclVatInDkk { get; set; }
+        public decimal? TotalExclVatInDkk { get; set; }
         public string MailOutStatus { get; set; }
         public string LatestMailOutType { get; set; }
         public string Currency { get; set; }

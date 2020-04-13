@@ -20,11 +20,11 @@ namespace Hexio.DineroClient.Models.Invoices
         public long? Number { get; set; }
         public string ContactName { get; set; }
         public bool? ShowLinesInclVat { get; set; }
-        public long? TotalExclVat { get; set; }
-        public long? TotalVatableAmount { get; set; }
-        public long? TotalInclVat { get; set; }
-        public long? TotalNonVatableAmount { get; set; }
-        public long? TotalVat { get; set; }
+        public decimal? TotalExclVat { get; set; }
+        public decimal? TotalVatableAmount { get; set; }
+        public decimal? TotalInclVat { get; set; }
+        public decimal? TotalNonVatableAmount { get; set; }
+        public decimal? TotalVat { get; set; }
         public List<TotalLine> TotalLines { get; set; }
         public string InvoiceTemplateId { get; set; }
         public string Currency { get; set; }
@@ -40,24 +40,24 @@ namespace Hexio.DineroClient.Models.Invoices
     public class ProductLine
     {
         public string AccountName { get; set; }
-        public long? BaseAmountValue { get; set; }
-        public long? BaseAmountValueInclVat { get; set; }
-        public long? TotalAmount { get; set; }
-        public long? TotalAmountInclVat { get; set; }
-        public string ProductGuid { get; set; }
+        public decimal? BaseAmountValue { get; set; }
+        public decimal? BaseAmountValueInclVat { get; set; }
+        public decimal? TotalAmount { get; set; }
+        public decimal? TotalAmountInclVat { get; set; }
+        public Guid? ProductGuid { get; set; }
         public string Description { get; set; }
         public string Comments { get; set; }
         public long? Quantity { get; set; }
         public long? AccountNumber { get; set; }
         public string Unit { get; set; }
-        public long? Discount { get; set; }
+        public decimal? Discount { get; set; }
         public string LineType { get; set; }
     }
 
     public class TotalLine
     {
         public string Type { get; set; }
-        public long? TotalAmount { get; set; }
+        public decimal? TotalAmount { get; set; }
         public long? Position { get; set; }
         public string Label { get; set; }
     }
