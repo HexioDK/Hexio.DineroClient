@@ -1,6 +1,6 @@
 namespace Hexio.DineroClient.Models.Invoices
 {
-    public class BookInvoiceModel
+    public class BookDocumentModel
     {
         public string TimeStamp { get; set; }
     }
