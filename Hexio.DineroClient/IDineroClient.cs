@@ -9,6 +9,7 @@ using Hexio.DineroClient.Auth;
 using Hexio.DineroClient.Models;
 using Hexio.DineroClient.Models.Accounts;
 using Hexio.DineroClient.Models.Contacts;
+using Hexio.DineroClient.Models.CreditNotes;
 using Hexio.DineroClient.Models.Invoices;
 using Hexio.DineroClient.Models.ManualVoucher;
 using Hexio.DineroClient.Models.Products;
@@ -76,15 +77,15 @@ namespace Hexio.DineroClient
 
         [Post("/v1/{organizationId}/invoices")]
         [AllowAnyStatusCode]
-        Task<Response<InvoiceCreatedModel>> CreateInvoice([Body] CreateInvoiceModel model);
+        Task<Response<DocumentCreatedModel>> CreateInvoice([Body] CreateInvoiceModel model);
 
         [Put("v1.2/{organizationId}/invoices/{invoiceGuid}")]
         [AllowAnyStatusCode]
-        Task<Response<InvoiceCreatedModel>> UpdateInvoice([Path] Guid invoiceGuid, [Body] CreateInvoiceModel model);
+        Task<Response<DocumentCreatedModel>> UpdateInvoice([Path] Guid invoiceGuid, [Body] CreateInvoiceModel model);
 
         [Post("/v1/{organizationId}/invoices/{guid}/book")]
         [AllowAnyStatusCode]
-        Task BookInvoice([Path] Guid guid, [Body] BookInvoiceModel model);
+        Task BookInvoice([Path] Guid guid, [Body] BookDocumentModel model);
         
         [Post("/v1/{organizationId}/invoices/{guid}/email")]
         [AllowAnyStatusCode]
@@ -92,8 +93,20 @@ namespace Hexio.DineroClient
 
         [Post("v1/{organizationId}/invoices/{invoiceGuid}/payments")]
         [AllowAnyStatusCode]
-        Task<InvoiceCreatedModel> AddPaymentToInvoice([Path] Guid invoiceGuid, [Body] CreatePaymentModel model);
+        Task<DocumentCreatedModel> AddPaymentToInvoice([Path] Guid invoiceGuid, [Body] CreatePaymentModel model);
 
+        [Get("v1/{organizationId}/sales/creditnotes/{creditNoteGuid}")]
+        [AllowAnyStatusCode]
+        Task<CreditNoteReadModel> GetCreditNote([Path] Guid creditNoteGuid);
+        
+        [Post("/v1/{organizationId}/sales/creditnotes")]
+        [AllowAnyStatusCode]
+        Task<DocumentCreatedModel> CreateCreditNote([Body] CreateCreditNoteModel model);
+
+        [Post("v1/{organizationId}/sales/creditnotes/{credtiNoteGuid}")]
+        [AllowAnyStatusCode]
+        Task BookCreditNote([Path] Guid guid, [Body] BookDocumentModel model);
+        
         [Post("/v1/{organizationId}/files")]
         [AllowAnyStatusCode]
         Task<FileUploadedResponse> UploadFile([Body] HttpContent content);
