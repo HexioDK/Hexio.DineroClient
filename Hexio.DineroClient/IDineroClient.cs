@@ -103,7 +103,7 @@ namespace Hexio.DineroClient
         [AllowAnyStatusCode]
         Task<Response<DocumentCreatedModel>> CreateCreditNote([Body] CreateCreditNoteModel model);
 
-        [Post("v1/{organizationId}/sales/creditnotes/{credtiNoteGuid}")]
+        [Post("v1/{organizationId}/sales/creditnotes/{credtiNoteGuid}/book")]
         [AllowAnyStatusCode]
         Task BookCreditNote([Path] Guid credtiNoteGuid, [Body] BookDocumentModel model);
         
