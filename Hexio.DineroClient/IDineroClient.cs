@@ -38,6 +38,9 @@ namespace Hexio.DineroClient
         [Get("/v1/{organizationId}/contacts")]
         Task<CollectionWrapper<ContactReadModel>> GetContacts([RawQueryString] QueryCreator<ContactReadModel> queryCreator);
         
+        [Get("v1/{organizationId}/contacts/{contactGuid}")]
+        Task<ContactReadModel> GetContactByGuid([Path] Guid contactGuid);
+        
         [Post("v1/{organizationId}/contacts")]
         Task<ContactReadModel> CreateContact([Body] CreateContactModel model);
         
