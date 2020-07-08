@@ -102,6 +102,9 @@ namespace Hexio.DineroClient
         [AllowAnyStatusCode]
         Task<CreditNoteReadModel> GetCreditNote([Path] Guid creditNoteGuid);
         
+        [Get("/v1/{organizationId}/sales/creditnotes/{guid}/pdf")]
+        Task<Stream> GetCreditnotePdf([Path] Guid guid);
+        
         [Post("/v1/{organizationId}/sales/creditnotes")]
         [AllowAnyStatusCode]
         Task<Response<DocumentCreatedModel>> CreateCreditNote([Body] CreateCreditNoteModel model);
