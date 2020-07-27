@@ -37,17 +37,11 @@ namespace Hexio.DineroClient.Demo
         public void ConfigureContainer(ContainerBuilder builder)
         {
             var settings = _configuration.GetSection("DineroApiSettings").Get<SingleDineroAccountApiSettings>();
+            var vismaConnectSettings = _configuration.GetSection("VismaConnectSettings").Get<VismaConnectSettings>();
             
-            var module = new DineroModule(settings);
+            var module = new DineroModule(settings, vismaConnectSettings);
             
             builder.RegisterModule(module);
-            
-            var vismaConnectettings = _configuration.GetSection("VismaConnectSettings").Get<VismaConnectSettings>();
-            builder.Register(x => vismaConnectettings);
-
-            builder.RegisterType<GetAuthorizeInfo>().AsImplementedInterfaces();
-            builder.RegisterType<GetEndpoints>().AsImplementedInterfaces();
-            builder.RegisterType<RequestAuthorizationToken>().AsImplementedInterfaces();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
