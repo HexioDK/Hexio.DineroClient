@@ -4,8 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
 using Hexio.DineroClient.Auth;
+using Hexio.DineroClient.Authorization;
 using Hexio.DineroClient.Models.Products;
 using Hexio.DineroClient.Module;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -26,6 +29,9 @@ namespace Hexio.DineroClient.Demo
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers();
+
+            services.AddHttpClient();
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -35,24 +41,18 @@ namespace Hexio.DineroClient.Demo
             var module = new DineroModule(settings);
             
             builder.RegisterModule(module);
-        }
+            
+            var vismaConnectettings = _configuration.GetSection("VismaConnectSettings").Get<VismaConnectSettings>();
+            builder.Register(x => vismaConnectettings);
 
-        public async Task GetMyProduct(IDineroClient client, IDineroAuthClient authClient, SingleDineroAccountApiSettings settings)
-        {
-            await client.SetAuthorizationHeader(authClient, settings.ApiKey, settings.OrganizationId);
-
-            var query = new QueryCreator<ProductReadModel>()
-                .Where(x => x.Name, QueryOperator.Eq, "MyProduct")
-                .Include(x => x.TotalAmount);
-
-            var products = await client.GetProducts(query);
+            builder.RegisterType<GetAuthorizeInfo>().AsImplementedInterfaces();
+            builder.RegisterType<GetEndpoints>().AsImplementedInterfaces();
+            builder.RegisterType<RequestAuthorizationToken>().AsImplementedInterfaces();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDineroClient client, IDineroAuthClient dineroAuthClient, SingleDineroAccountApiSettings dineroApiSettings)
         {
-            GetMyProduct(client, dineroAuthClient, dineroApiSettings).GetAwaiter().GetResult();
-            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -62,7 +62,9 @@ namespace Hexio.DineroClient.Demo
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context => { await context.Response.WriteAsync("Hello World!"); });
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

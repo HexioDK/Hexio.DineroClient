@@ -25,6 +25,9 @@ namespace Hexio.DineroClient
         
         [Header("Authorization")]
         AuthenticationHeaderValue Authorization { get; set; }
+
+        [Get("v1/organizations?fields=name,email,isPro,VatNumber,id")]
+        Task<IList<OrganizationReadModel>> GetOrganizations();
         
         [Get("v1/{organizationId}/accounts/entry")]
         Task<IList<AccountModel>> GetAccounts();
@@ -126,6 +129,13 @@ namespace Hexio.DineroClient
             var accessToken = await authClient.Authenticate(new AuthRequest(apiKey, apiKey));
             
             client.Authorization = new AuthenticationHeaderValue("Bearer", accessToken.AccessToken);
+
+            client.OrganizationId = organizationId;
+        }
+        
+        public static void SetAuthorizationHeader(this IDineroClient client, string token, int organizationId)
+        {
+            client.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             client.OrganizationId = organizationId;
         }
