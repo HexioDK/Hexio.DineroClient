@@ -12,7 +12,7 @@ namespace Hexio.DineroClient.Models.Contacts
         public string Email { get; set; }
         public string Webpage { get; set; }
         public string AttPerson { get; set; }
-        public long? VatNumber { get; set; }
+        public string VatNumber { get; set; }
         public string EanNumber { get; set; }
         public string PaymentConditionType { get; set; }
         public long PaymentConditionNumberOfDays { get; set; }
