@@ -25,8 +25,8 @@ namespace Hexio.DineroClient.Module
                 builder.Register(x => (SingleDineroAccountApiSettings) _dineroApiSettings);
             }
             
-            builder.Register(x => DineroAuthClientFactory.Execute(_dineroApiSettings)).SingleInstance().AsImplementedInterfaces();
-            builder.Register(x => DineroClientFactory.Execute(_dineroApiSettings)).SingleInstance().AsImplementedInterfaces();
+            builder.Register(x => DineroAuthClientFactory.Execute(_dineroApiSettings)).InstancePerLifetimeScope().AsImplementedInterfaces();
+            builder.Register(x => DineroClientFactory.Execute(_dineroApiSettings)).InstancePerLifetimeScope().AsImplementedInterfaces();
             
             builder.RegisterType<GetAuthorizeInfo>().AsImplementedInterfaces();
             builder.RegisterType<GetEndpoints>().AsImplementedInterfaces();
