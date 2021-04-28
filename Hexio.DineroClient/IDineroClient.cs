@@ -90,6 +90,10 @@ namespace Hexio.DineroClient
         [Post("/v1/{organizationId}/invoices")]
         [AllowAnyStatusCode]
         Task<Response<DocumentCreatedModel>> CreateInvoice([Body] CreateInvoiceModel model);
+        
+        [Post("/v1/{organizationId}/invoices/fetch")]
+        [AllowAnyStatusCode]
+        Task<Response<DocumentCreatedModel>> CreateInvoiceTotals([Body] CreateInvoiceModel model);
 
         [Put("v1.2/{organizationId}/invoices/{invoiceGuid}")]
         [AllowAnyStatusCode]
