@@ -12,6 +12,7 @@ namespace Hexio.DineroClient.Models.Invoices
         public Guid ContactGuid { get; set; }
         public Guid? InvoiceTemplateId { get; set; }
         public string ExternalReference { get; set; }
+        public string Timestamp { get; set; }
         public ICollection<CreateInvoiceLineModel> ProductLines { get; set; }
     }
 }
