@@ -14,7 +14,7 @@ namespace Hexio.DineroClient.Models.Invoices
         public string MailOutStatus { get; set; }
         public string LatestMailOutType { get; set; }
         public string Status { get; set; }
-        public Guid ContactGuid { get; set; }
+        public Guid? ContactGuid { get; set; }
         public Guid Guid { get; set; }
         public string TimeStamp { get; set; }
         public long? Number { get; set; }
