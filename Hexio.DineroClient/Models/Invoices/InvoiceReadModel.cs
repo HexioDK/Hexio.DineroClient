@@ -47,7 +47,7 @@ namespace Hexio.DineroClient.Models.Invoices
         public Guid? ProductGuid { get; set; }
         public string Description { get; set; }
         public string Comments { get; set; }
-        public long? Quantity { get; set; }
+        public decimal? Quantity { get; set; }
         public long? AccountNumber { get; set; }
         public string Unit { get; set; }
         public decimal? Discount { get; set; }
