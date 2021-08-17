@@ -13,4 +13,11 @@ namespace Hexio.DineroClient.Models.Invoices
         public string Message { get; set; }
         public bool AddVoucherAsPdfAttachment { get; set; }
     }
+
+    public class SendInvoiceWithEanModel
+    {
+        public string OrderReference { get; set; }
+        public string AttPerson { get; set; }
+        public string ReceiverEanNumber { get; set; }
+    }
 }

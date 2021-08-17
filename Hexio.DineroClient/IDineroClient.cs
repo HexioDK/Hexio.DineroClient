@@ -110,6 +110,10 @@ namespace Hexio.DineroClient
         [Post("/v1/{organizationId}/invoices/{guid}/email")]
         [AllowAnyStatusCode]
         Task<Response<SendInvoiceResponse>> SendInvoice([Path] Guid guid, [Body] SendInvoiceEmailModel model);
+        
+        [Post("v2/{organizationId}/invoices/{guid}/e-invoice")]
+        [AllowAnyStatusCode]
+        Task<Response<SendInvoiceResponse>> SendInvoiceWithEan([Path] Guid guid, [Body] SendInvoiceWithEanModel model);
 
         [Post("v1/{organizationId}/invoices/{invoiceGuid}/payments")]
         [AllowAnyStatusCode]
