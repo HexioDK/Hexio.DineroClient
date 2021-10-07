@@ -14,5 +14,6 @@ namespace Hexio.DineroClient.Models.Invoices
         public string ExternalReference { get; set; }
         public string Timestamp { get; set; }
         public ICollection<CreateInvoiceLineModel> ProductLines { get; set; }
+        public string Description { get; set; } = null;
     }
 }
