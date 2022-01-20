@@ -98,6 +98,10 @@ namespace Hexio.DineroClient
         [Put("v1.2/{organizationId}/invoices/{invoiceGuid}")]
         [AllowAnyStatusCode]
         Task<Response<DocumentCreatedModel>> UpdateInvoice([Path] Guid invoiceGuid, [Body] CreateInvoiceModel model);
+        
+        [Delete("v1/{organizationId}/invoices/{invoiceGuid}")]
+        [AllowAnyStatusCode]
+        Task<Response<DocumentCreatedModel>> DeleteInvoice([Path] Guid invoiceGuid);
 
         [Post("/v1/{organizationId}/invoices/{guid}/book")]
         [AllowAnyStatusCode]
