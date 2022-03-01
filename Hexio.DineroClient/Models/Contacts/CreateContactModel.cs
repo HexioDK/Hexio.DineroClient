@@ -15,7 +15,7 @@ namespace Hexio.DineroClient.Models.Contacts
         public string VatNumber { get; set; }
         public string EanNumber { get; set; }
         public string PaymentConditionType { get; set; }
-        public long PaymentConditionNumberOfDays { get; set; }
+        public long? PaymentConditionNumberOfDays { get; set; }
         public bool IsPerson { get; set; }
         public bool IsMember { get; set; }
         public string MemberNumber { get; set; }
