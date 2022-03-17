@@ -17,7 +17,7 @@ namespace Hexio.DineroClient.Models.Ledger
     {
         public Guid? Id { get; set; }
         public string Description { get; set; }
-        public double Amount { get; set; }
+        public decimal Amount { get; set; }
         public int? AccountNumber { get; set; }
         public string AccountVatCode { get; set; }
         public int? BalancingAccountNumber { get; set; }
