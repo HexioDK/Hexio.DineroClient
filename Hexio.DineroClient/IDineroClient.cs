@@ -11,6 +11,7 @@ using Hexio.DineroClient.Models.Accounts;
 using Hexio.DineroClient.Models.Contacts;
 using Hexio.DineroClient.Models.CreditNotes;
 using Hexio.DineroClient.Models.Invoices;
+using Hexio.DineroClient.Models.Ledger;
 using Hexio.DineroClient.Models.ManualVoucher;
 using Hexio.DineroClient.Models.Products;
 using Hexio.DineroClient.Models.PurchaseVouchers;
@@ -141,7 +142,22 @@ namespace Hexio.DineroClient
         [Post("/v1/{organizationId}/files")]
         [AllowAnyStatusCode]
         Task<FileUploadedResponse> UploadFile([Body] HttpContent content);
+        
+        [Post("/v1/{organizationId}/ledgerItems/ledgers")]
+        [AllowAnyStatusCode]
+        Task<Response<List<LedgerItemModel>>> GetLedgerItems([Body] List<LedgerItemsModelReadModel> model);
 
+        [Post("/v1.2/{organizationId}/ledgerItems")]
+        [AllowAnyStatusCode]
+        Task<Response<List<LedgerItemsModelReadModel>>> AddLedgerItems([Body] List<LedgerItemModel> model);
+        
+        [Post("/v1/{organizationId}/ledgerItems/book")]
+        [AllowAnyStatusCode]
+        Task<Response<HttpResponseMessage>> BookLedgerItems([Body] List<LedgerItemsModelReadModel> model);
+        
+        [Delete("/v1/{organizationId}/ledgerItems/delete")]
+        [AllowAnyStatusCode]
+        Task<Response<HttpResponseMessage>> DeleteLedgerItems([Body] List<LedgerItemsModelReadModel> model);
     }
 
     public static class DineroClientExtensions
