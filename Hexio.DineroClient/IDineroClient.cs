@@ -74,7 +74,16 @@ namespace Hexio.DineroClient
 
         [Post("v1/{organizationId}/vouchers/purchase/{guid}/generate-creditnote")]
         Task<PurchaseVoucherReadModel> CreateCreditNoteFromPurchaseVoucher([Path] Guid guid, [Body] CreateCreditNoteFromPurchaseVoucerModel model);
-
+        
+        [Post("v1/{organizationId}/vouchers/purchase/creditnotes")]
+        Task<Response<DocumentCreatedModel>> CreatePurchaseVoucherCreditNote([Body] CreatePurchaseVoucherCreditNoteModel model);
+        
+        [Put("v1/{organizationId}/vouchers/purchase/creditnotes/{guid}")]
+        Task UpdatePurchaseVoucherCreditNote([Path] Guid guid, [Body] CreatePurchaseVoucherCreditNoteModel model);
+        
+        [Get("v1/{organizationId}/vouchers/purchase/creditnotes/{guid}")]
+        Task<PurchaseVoucherCreditNoteReadModel> GetPurchaseVoucherCreditNote([Path] Guid guid);
+        
         [Post("v1/{organizationId}/vouchers/purchase/creditnotes/{guid}/book")]
         Task BookPurchaseVoucherCreditNote([Path] Guid guid, [Body] BookVoucherModel model);
         
