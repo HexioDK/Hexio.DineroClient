@@ -5,7 +5,7 @@ namespace Hexio.DineroClient.Models.Contacts
         public string ExternalReference { get; set; }
         public string Name { get; set; }
         public string Street { get; set; }
-        public int? ZipCode { get; set; }
+        public string ZipCode { get; set; }
         public string City { get; set; }
         public string CountryKey { get; set; } = "DK";
         public string Phone { get; set; }
