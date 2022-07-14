@@ -27,7 +27,7 @@ namespace Hexio.DineroClient
         [Header("Authorization")]
         AuthenticationHeaderValue Authorization { get; set; }
 
-        [Get("v1/organizations?fields=name,email,isPro,VatNumber,id")]
+        [Get("v1/organizations?fields=name,email,isPro,VatNumber,id,phone,street,city,zipCode,attPerson")]
         Task<IList<OrganizationReadModel>> GetOrganizations();
         
         [Get("v1/{organizationId}/accounts/entry")]
