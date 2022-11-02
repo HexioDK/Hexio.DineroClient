@@ -15,6 +15,7 @@ using Hexio.DineroClient.Models.Ledger;
 using Hexio.DineroClient.Models.ManualVoucher;
 using Hexio.DineroClient.Models.Products;
 using Hexio.DineroClient.Models.PurchaseVouchers;
+using Hexio.DineroClient.Models.Sales;
 using RestEase;
 
 namespace Hexio.DineroClient
@@ -167,6 +168,9 @@ namespace Hexio.DineroClient
         [Delete("/v1/{organizationId}/ledgerItems/delete")]
         [AllowAnyStatusCode]
         Task<Response<HttpResponseMessage>> DeleteLedgerItems([Body] List<LedgerItemsModelReadModel> model);
+        
+        [Get("/v1/{organizationId}/sales/settings")]
+        Task<DefaultInvoiceSettings> GetDefaultInvoiceSettings();
     }
 
     public static class DineroClientExtensions
