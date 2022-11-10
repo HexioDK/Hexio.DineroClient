@@ -171,6 +171,10 @@ namespace Hexio.DineroClient
         
         [Get("/v1/{organizationId}/sales/settings")]
         Task<DefaultInvoiceSettings> GetDefaultInvoiceSettings();
+        
+        [Post("https://connect.visma.com/connect/token")]
+        [AllowAnyStatusCode]
+        Task<Response<TokenResponse>> GetTokenForTenant([Body(BodySerializationMethod.UrlEncoded)] Dictionary<string, string> body);
     }
 
     public static class DineroClientExtensions

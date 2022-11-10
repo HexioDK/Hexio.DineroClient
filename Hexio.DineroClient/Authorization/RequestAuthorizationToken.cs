@@ -6,8 +6,8 @@ namespace Hexio.DineroClient.Authorization
 {
     public interface IRequestAuthorizationToken
     {
-        Task<TokenResponse> Execute(string code, string codeVerifier);
-        Task<TokenResponse> Execute(string refreshToken);
+        Task<IdentityModel.Client.TokenResponse> Execute(string code, string codeVerifier);
+        Task<IdentityModel.Client.TokenResponse> Execute(string refreshToken);
     }
 
     public class RequestAuthorizationToken : IRequestAuthorizationToken
@@ -26,7 +26,7 @@ namespace Hexio.DineroClient.Authorization
             _settings = settings;
         }
 
-        public async Task<TokenResponse> Execute(string code, string codeVerifier)
+        public async Task<IdentityModel.Client.TokenResponse> Execute(string code, string codeVerifier)
         {
             var tokenEndpoint = (await _getEndpoints.Execute()).TokenEndpoint;
 
@@ -41,7 +41,7 @@ namespace Hexio.DineroClient.Authorization
             });
         }
         
-        public async Task<TokenResponse> Execute(string refreshToken)
+        public async Task<IdentityModel.Client.TokenResponse> Execute(string refreshToken)
         {
             var tokenEndpoint = (await _getEndpoints.Execute()).TokenEndpoint;
 
