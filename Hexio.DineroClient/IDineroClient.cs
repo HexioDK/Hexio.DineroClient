@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using Hexio.DineroClient.Auth;
+using Hexio.DineroClient.Authorization;
 using Hexio.DineroClient.Models;
 using Hexio.DineroClient.Models.Accounts;
 using Hexio.DineroClient.Models.Contacts;
@@ -191,6 +192,26 @@ namespace Hexio.DineroClient
         public static void SetAuthorizationHeader(this IDineroClient client, string token, int organizationId)
         {
             client.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            client.OrganizationId = organizationId;
+        }
+        
+        public static async Task SetAuthorizationHeader(this IDineroClient client, VismaConnectSettings vismaConnectSettings, Guid tenantId, int organizationId)
+        {
+            var response = await client.GetTokenForTenant(new Dictionary<string, string>
+            {
+                {"grant_type", "client_credentials"},
+                {"client_id", vismaConnectSettings.ClientId},
+                {"client_secret", vismaConnectSettings.ClientSecret},
+                {"tenant_id", tenantId.ToString()},
+            });
+            
+            if (!response.ResponseMessage.IsSuccessStatusCode)
+            {
+                throw new Exception($"Failed to get token for tenant with error {response.StringContent}");
+            }
+
+            client.Authorization = new AuthenticationHeaderValue("Bearer", response.GetContent().AccessToken);
 
             client.OrganizationId = organizationId;
         }
