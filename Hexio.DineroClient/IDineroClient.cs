@@ -119,7 +119,7 @@ namespace Hexio.DineroClient
         [AllowAnyStatusCode]
         Task BookInvoice([Path] Guid guid, [Body] BookDocumentModel model);
         
-        [Get("/v1/{organizationId}/invoices/{guid}/email/template")]
+        [Get("/v2/{organizationId}/invoices/{guid}/email/template")]
         [AllowAnyStatusCode]
         Task<Response<InvoiceEmailTemplateModel>> GetInvoiceEmailTemplate([Path] Guid guid);
 
