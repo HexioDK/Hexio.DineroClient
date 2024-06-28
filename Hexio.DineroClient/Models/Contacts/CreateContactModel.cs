@@ -21,5 +21,14 @@ namespace Hexio.DineroClient.Models.Contacts
         public string MemberNumber { get; set; }
         public bool UseCvr { get; set; }
         public string CompanyTypeKey { get; set; }
+        public MailoutOption? InvoiceMailOutOptionKey { get; set; }
+    }
+
+    public enum MailoutOption
+    {
+        VAT,
+        GLN,
+        SE,
+        P
     }
 }

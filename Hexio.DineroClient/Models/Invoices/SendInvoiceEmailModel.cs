@@ -19,5 +19,20 @@ namespace Hexio.DineroClient.Models.Invoices
         public string OrderReference { get; set; }
         public string AttPerson { get; set; }
         public string ReceiverEanNumber { get; set; }
+        public string PaymentMeanEnum { get; set; } = PaymentMean.Domestic.ToString();
+    }
+    
+    public class SendElectronicInvoiceModel
+    {
+        public string OrderReference { get; set; }
+        public string AttPerson { get; set; }
+        public string PaymentMeanEnum { get; set; } = PaymentMean.Domestic.ToString();
+    }
+
+    public enum PaymentMean
+    {
+        FIK,
+        Domestic,
+        International
     }
 }
