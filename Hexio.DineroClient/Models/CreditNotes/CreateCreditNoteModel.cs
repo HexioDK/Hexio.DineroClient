@@ -6,7 +6,7 @@ namespace Hexio.DineroClient.Models.CreditNotes
 {
     public class CreateCreditNoteModel
     {
-        public Guid CreditNoteFor { get; set; }
+        public Guid? CreditNoteFor { get; set; }
         public Guid ContactGuid { get; set; }
         public bool ShowLinesInclVat { get; set; } = false;
         public string Comment { get; set; }

@@ -7,7 +7,7 @@ namespace Hexio.DineroClient.Models.CreditNotes
     public class CreditNoteReadModel
     {
         public Guid Guid { get; set; }
-        public Guid CreditNoteFor { get; set; }
+        public Guid? CreditNoteFor { get; set; }
         public string Status { get; set; }
         public Guid ContactGuid { get; set; }
         public string TimeStamp { get; set; }
