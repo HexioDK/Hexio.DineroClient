@@ -117,7 +117,7 @@ namespace Hexio.DineroClient
 
         [Post("/v1/{organizationId}/invoices/{guid}/book")]
         [AllowAnyStatusCode]
-        Task BookInvoice([Path] Guid guid, [Body] BookDocumentModel model);
+        Task<HttpResponseMessage> BookInvoice([Path] Guid guid, [Body] BookDocumentModel model);
         
         [Get("/v2/{organizationId}/invoices/{guid}/email/template")]
         [AllowAnyStatusCode]
@@ -153,6 +153,10 @@ namespace Hexio.DineroClient
         [Post("v1/{organizationId}/sales/creditnotes/{credtiNoteGuid}/book")]
         [AllowAnyStatusCode]
         Task<HttpResponseMessage> BookCreditNote([Path] Guid credtiNoteGuid, [Body] BookDocumentModel model);
+        
+        [Delete("/v1/{organizationId}/sales/creditnotes/{guid}")]
+        [AllowAnyStatusCode]
+        Task<Response<DocumentCreatedModel>> DeleteCreditNote([Path] Guid guid);
         
         [Post("/v1/{organizationId}/files")]
         [AllowAnyStatusCode]
