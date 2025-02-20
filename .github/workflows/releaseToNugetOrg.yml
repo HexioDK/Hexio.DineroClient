@@ -12,7 +12,7 @@ jobs:
       
       - uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '3.1.100' 
+          dotnet-version: '8.1.x' 
 
       - name: Checkout repository
         uses: actions/checkout@master   
