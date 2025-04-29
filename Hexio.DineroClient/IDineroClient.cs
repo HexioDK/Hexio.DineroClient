@@ -141,7 +141,7 @@ namespace Hexio.DineroClient
         
         [Get("v1/{organizationId}/sales/creditnotes")]
         [AllowAnyStatusCode]
-        Task<CreditNoteReadModel> ListCreditNotes([RawQueryString] QueryCreator<CreditNoteReadModel> queryCreator = null);
+        Task<CollectionWrapper<CreditNoteReadModel>> ListCreditNotes([RawQueryString] QueryCreator<CreditNoteReadModel> queryCreator = null);
 
         [Get("v1/{organizationId}/sales/creditnotes/{creditNoteGuid}")]
         [AllowAnyStatusCode]
