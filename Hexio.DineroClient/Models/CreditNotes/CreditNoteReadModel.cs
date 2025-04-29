@@ -4,7 +4,7 @@ using Hexio.DineroClient.Models.Invoices;
 
 namespace Hexio.DineroClient.Models.CreditNotes
 {
-    public class CreditNoteReadModel
+    public class CreditNoteReadModel : IReadModel
     {
         public Guid Guid { get; set; }
         public Guid? CreditNoteFor { get; set; }
@@ -24,5 +24,28 @@ namespace Hexio.DineroClient.Models.CreditNotes
         public DateTime Date { get; set; }
         public List<ProductLine> ProductLines { get; set; }
         public string Address { get; set; }
+        public IList<string> FieldsToFilter { get; } = new List<string>
+        {
+            "ContactGuid",
+            "Description",
+            "ExternalReference"
+        };
+
+        public IList<string> GetDefaultFields()
+        {
+            return new List<string>
+            {
+                "Guid",
+                "ContactName",
+                "Date",
+                "Description",
+                "Type"
+            };
+        }
+
+        public bool HasChangesSince()
+        {
+            return true;
+        }
     }
 }
