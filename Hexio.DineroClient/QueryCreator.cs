@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using Hexio.DineroClient.Models;
@@ -132,7 +133,8 @@ namespace Hexio.DineroClient
 
             if (ChangesSince != null)
             {
-                queryItems.Add($"changesSince={ChangesSince.Value.ToString("yyyy-MM-ddTHH:mm:ssZ")}");
+                // Dinero wants UTC with colons, whatever the server's culture (da-DK would write "08.28.58").
+                queryItems.Add($"changesSince={ChangesSince.Value.UtcDateTime.ToString("yyyy-MM-dd'T'HH:mm:ss'Z'", CultureInfo.InvariantCulture)}");
             }
 
             queryItems.Add($"page={Page}");

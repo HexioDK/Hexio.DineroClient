@@ -1,3 +1,6 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
 namespace Hexio.DineroClient.Models.Contacts
 {
     public class CreateContactModel
@@ -21,6 +24,10 @@ namespace Hexio.DineroClient.Models.Contacts
         public string MemberNumber { get; set; }
         public bool UseCvr { get; set; }
         public string CompanyTypeKey { get; set; }
+        /// <summary>
+        /// The preferred e-invoice method. Dinero expects the key as text ("VAT", "GLN", "SE", "P"), or null for none.
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
         public MailoutOption? InvoiceMailOutOptionKey { get; set; }
     }
 
