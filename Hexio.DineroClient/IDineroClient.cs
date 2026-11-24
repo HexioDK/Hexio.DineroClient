@@ -40,6 +40,18 @@ namespace Hexio.DineroClient
 
         [Get("/v1/{organizationId}/products")]
         Task<CollectionWrapper<ProductReadModel>> GetProducts([RawQueryString] QueryCreator<ProductReadModel> queryCreator);
+
+        [Get("v1/{organizationId}/products/{productGuid}")]
+        Task<ProductReadModel> GetProductByGuid([Path] Guid productGuid);
+
+        [Post("v1/{organizationId}/products")]
+        Task<ProductCreatedModel> CreateProduct([Body] CreateProductModel model);
+
+        /// <summary>
+        /// Replaces the whole product. Read it first with <see cref="GetProductByGuid"/> to keep fields you don't change.
+        /// </summary>
+        [Put("v1/{organizationId}/products/{productGuid}")]
+        Task UpdateProduct([Path] Guid productGuid, [Body] CreateProductModel model);
         
         [Get("/v1/{organizationId}/contacts")]
         Task<CollectionWrapper<ContactReadModel>> GetContacts([RawQueryString] QueryCreator<ContactReadModel> queryCreator);
@@ -50,8 +62,15 @@ namespace Hexio.DineroClient
         [Post("v1/{organizationId}/contacts")]
         Task<ContactReadModel> CreateContact([Body] CreateContactModel model);
         
+        [Obsolete("Dinero has deprecated PUT v1 contacts. Use UpdateContactV2.")]
         [Put("v1/{organizationId}/contacts/{contactGuid}")]
         Task<ContactReadModel> UpdateContact([Path] Guid contactGuid, [Body] CreateContactModel model);
+
+        /// <summary>
+        /// Replaces the whole contact. Read it first with <see cref="GetContactByGuid"/> to keep fields you don't change.
+        /// </summary>
+        [Put("v2/{organizationId}/contacts/{contactGuid}")]
+        Task UpdateContactV2([Path] Guid contactGuid, [Body] CreateContactModel model);
         
         [Post("v1/{organizationId}/vouchers/manuel")]
         Task<ManualVoucherReadModel> CreateManualVoucher([Body] CreateManualVoucherModel model);
